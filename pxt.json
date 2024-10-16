@@ -2,7 +2,8 @@
     "name": "Collection - with pumpkins",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "animation": "*"
     },
     "files": [
         "main.blocks",

@@ -1,9 +1,17 @@
+namespace SpriteKind {
+    export const Timer = SpriteKind.create()
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     info.changeScoreBy(1)
     sprites.destroy(otherSprite)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Timer, function (sprite, otherSprite) {
+    info.changeCountdownBy(10)
+    sprites.destroy(otherSprite)
+})
 let projectile: Sprite = null
 let mySprite2: Sprite = null
+let mySprite3: Sprite = null
 info.startCountdown(10)
 let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -24,6 +32,28 @@ let mySprite = sprites.create(img`
     . . . . . 8 8 . . . 8 . . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
+game.onUpdateInterval(5000, function () {
+    mySprite3 = sprites.create(img`
+        . . . . . . . f f . . . . . . . 
+        . . . . . . . f f . . . . . . . 
+        . . . . . . f . f . . . . . . . 
+        . . . . . f f f f f . . . . . . 
+        . . . . f f . . . f f . . . . . 
+        . . . . f . . . . . f . . . . . 
+        . . . f f . . f . . f . . . . . 
+        . . . f . . . f . . f . . . . . 
+        . . . f . . . f f f f . . . . . 
+        . . . f f . . . . . f . . . . . 
+        . . . . f f . . . f f . . . . . 
+        . . . . . f f f f f . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
+    mySprite.x = randint(0, 160)
+    mySprite.y = randint(0, 120)
+})
 game.onUpdateInterval(1000, function () {
     mySprite2 = sprites.create(img`
         . . . . . 1 1 1 1 1 1 1 . . . . 
